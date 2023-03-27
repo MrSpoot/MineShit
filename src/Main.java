@@ -3,17 +3,12 @@ import engine.math.Vector3f;
 import engine.texture.Texture;
 import engine.texture.TextureAtlas;
 import engine.texture.TextureAtlasManager;
-import engine.texture.TextureManager;
 import game.object.Game;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import engine.render.Camera;
 import engine.render.DisplayManager;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -28,22 +23,14 @@ public class Main {
 
     public Main(){
         DisplayManager.create(1600,900,"Oui Oui Baguette");
-        TextureAtlasManager.create();
-        camera = new Camera(new Vector3f(0,0,0));
+        camera = new Camera(new Vector3f(0,-66,0));
         camera.setPerspectiveProjection(90.0f,0.1f,1000.0f);
     }
 
     public void start(){
         System.out.println("GAME STARTED");
         this.running = true;
-        loadAsset(GL_NEAREST);
-
-        for (Texture t : TextureManager.getTextures()){
-
-            System.out.println("Texture : " + t.getName() + " | ID : "+t.getId());
-
-        }
-
+        loadAsset();
         this.game = new Game();
 
         loop();
@@ -121,11 +108,9 @@ public class Main {
         System.exit(0);
     }
 
-    public void loadAsset(int filter){
-        TextureAtlas[] textures = TextureAtlas.values();
-        for (TextureAtlas texture : textures) {
-            TextureManager.loadNewTexture(new Texture(texture,filter));
-        }
+    public void loadAsset(){
+
+        Texture.create("/texture/texture_sheet.png",GL_NEAREST);
     }
 
     public static void main(String[] args) {

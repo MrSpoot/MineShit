@@ -1,27 +1,33 @@
 package engine.texture;
 
 import org.lwjgl.BufferUtils;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
 
 public class Texture {
 
-    private int id;
-    private TextureAtlas name;
-    private int width,height;
+    private static int id;
+    private static int width,height;
 
-    public Texture(TextureAtlas name, int filter) {
-        this.name = name;
+    public static void create(String atlasPath,int filter){
+        BufferedImage image;
+        try {
+            image = ImageIO.read(TextureAtlasManager.class.getResource(atlasPath));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        BufferedImage image = TextureAtlasManager.getTextureImage(name);
         int[] pixels = null;
 
-            this.width = image.getWidth();
-            this.height = image.getHeight();
-            pixels = new int[width*height];
-            image.getRGB(0,0,width,height,pixels,0,width);
+        width = image.getWidth();
+        height = image.getHeight();
+        pixels = new int[width*height];
+        image.getRGB(0,0,width,height,pixels,0,width);
 
         int[] data = new int[width*height];
         for(int i = 0; i < data.length; i++){
@@ -34,22 +40,25 @@ public class Texture {
             data[i] = a << 24 | b << 16 | g << 8 | r;
         }
 
-        int id = glGenTextures();
-        //glBindTexture(GL_TEXTURE_2D,id);
+        id = glGenTextures();
+        glBindTexture(GL_TEXTURE_2D,id);
         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,filter);
         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,filter);
         IntBuffer buffer = BufferUtils.createIntBuffer(data.length);
         buffer.put(data);
         buffer.flip();
         glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,width,height,0,GL_RGBA,GL_UNSIGNED_BYTE, buffer);
-        this.id = id;
     }
 
-    public TextureAtlas getName() {
-        return name;
-    }
-
-    public int getId() {
+    public static int getId() {
         return id;
+    }
+
+    public static int getWidth() {
+        return width;
+    }
+
+    public static int getHeight() {
+        return height;
     }
 }

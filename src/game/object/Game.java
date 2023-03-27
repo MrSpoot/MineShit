@@ -1,5 +1,7 @@
 package game.object;
 
+import game.object.gen.World;
+
 public class Game {
 
     private World world;

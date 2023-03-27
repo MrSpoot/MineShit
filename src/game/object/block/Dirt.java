@@ -4,19 +4,19 @@ import engine.math.Vector3f;
 import engine.texture.TextureAtlas;
 import engine.texture.TextureAtlasManager;
 import game.object.Block;
-import org.w3c.dom.Text;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glTexCoord2f;
+import static org.lwjgl.opengl.GL11.glVertex3f;
 
-public class Stone extends Block {
+public class Dirt extends Block {
 
     private Vector3f position;
 
-    private final TextureAtlas texureName = TextureAtlas.STONE;
+    private final TextureAtlas texureName = TextureAtlas.DIRT;
 
-    public Stone(){this(new Vector3f(0,0,0));}
+    public Dirt(){this(new Vector3f(0,0,0));}
 
-    public Stone(Vector3f position) {
+    public Dirt(Vector3f position) {
         this.position = position;
     }
 

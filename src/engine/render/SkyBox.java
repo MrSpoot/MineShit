@@ -1,32 +1,30 @@
-package game.object.block;
+package engine.render;
 
 import engine.math.Vector3f;
 import engine.texture.TextureAtlas;
 import engine.texture.TextureAtlasManager;
-import game.object.Block;
-import org.w3c.dom.Text;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glTexCoord2f;
+import static org.lwjgl.opengl.GL11.glVertex3f;
 
-public class Stone extends Block {
+public class SkyBox {
 
     private Vector3f position;
 
-    private final TextureAtlas texureName = TextureAtlas.STONE;
+    private final TextureAtlas texureName = TextureAtlas.BEDROCK;
 
-    public Stone(){this(new Vector3f(0,0,0));}
-
-    public Stone(Vector3f position) {
-        this.position = position;
+    public SkyBox(Camera camera){
+        this.position = camera.getPosition();
     }
 
+
     /*
-    *
-    *       3---2
-    *       |   |
-    *       0---1
-    *
-    */
+     *
+     *       3---2
+     *       |   |
+     *       0---1
+     *
+     */
 
     public void render(){
 
@@ -67,7 +65,7 @@ public class Stone extends Block {
     public Vector3f getPosition() {
         return position;
     }
-    
+
     public float getX(){
         return this.position.getX();
     }
@@ -79,4 +77,5 @@ public class Stone extends Block {
     public float getZ(){
         return this.position.getZ();
     }
+
 }
