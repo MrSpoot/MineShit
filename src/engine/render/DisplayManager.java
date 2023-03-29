@@ -25,12 +25,12 @@ public class DisplayManager {
 
             FloatBuffer fogColor = (FloatBuffer) BufferUtils.createFloatBuffer(4);
             fogColor.put(new float[]{
-                    0,0,0,1
+                    1,1,1,1
             });
             fogColor.flip();
 
             glFogi(GL_FOG_MODE, GL_EXP);
-            glFogf(GL_FOG_DENSITY, 0.2f);
+            glFogf(GL_FOG_DENSITY, 0.5f);
             glFog(GL_FOG_COLOR, fogColor);
         } catch (LWJGLException e) {
             throw new RuntimeException(e);

@@ -11,7 +11,7 @@ public class SkyBox {
 
     private Vector3f position;
 
-    private final TextureAtlas texureName = TextureAtlas.BEDROCK;
+    private final TextureAtlas textureName = TextureAtlas.BEDROCK;
 
     public SkyBox(Camera camera){
         this.position = camera.getPosition();
@@ -28,7 +28,7 @@ public class SkyBox {
 
     public void render(){
 
-        float[] textureCord = TextureAtlasManager.getTextureCoordinate(texureName);
+        float[] textureCord = TextureAtlasManager.getTextureCoordinate(textureName);
 
         //SOUTH
         glTexCoord2f(textureCord[0],textureCord[1]); glVertex3f(0+this.getX(), 0+this.getY(), 0+this.getZ());

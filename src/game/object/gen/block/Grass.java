@@ -16,7 +16,7 @@ public class Grass extends Block {
 
     private Vector3f position;
     private final ArrayList<Face> faceToDisplay;
-    private final TextureAtlas texureName = TextureAtlas.GRASS;
+    private final TextureAtlas textureName = TextureAtlas.GRASS;
 
     public Grass(){this(new Vector3f(0,0,0));}
 
@@ -36,7 +36,7 @@ public class Grass extends Block {
 
     public void render(){
 
-        float[] textureCord = TextureAtlasManager.getTextureCoordinate(texureName);
+        float[] textureCord = TextureAtlasManager.getTextureCoordinate(textureName);
 
         if(faceToDisplay.contains(Face.SOUTH)){
             //SOUTH
@@ -71,7 +71,7 @@ public class Grass extends Block {
             glTexCoord2f(textureCord[6],textureCord[7]); glVertex3f(0+this.getX(), 0+this.getY(), 0+this.getZ());
         }
 
-        textureCord = TextureAtlasManager.getTextureCoordinate(texureName);
+        textureCord = TextureAtlasManager.getTextureCoordinate(textureName);
         if(faceToDisplay.contains(Face.EAST)){
             //EAST
             glTexCoord2f(textureCord[0],textureCord[1]); glVertex3f(1+this.getX(), 0+this.getY(), 0+this.getZ());

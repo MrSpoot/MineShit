@@ -8,7 +8,7 @@ import game.object.utils.WorldUtils;
 public class Chunk {
 
     private final Vector3f position;
-    private final int MAX_HEIGHT = 255;
+    private final int MAX_HEIGHT = 2;
     private final int MAX_SIZE = 16;
 
     private Block[][][] blocks;
@@ -18,13 +18,12 @@ public class Chunk {
     }
 
     public Chunk(Vector3f position) {
-        this.position = position;
+        this.position = new Vector3f(position.getX()*MAX_SIZE,position.getY(),position.getZ()*MAX_SIZE);
         this.blocks = new Block[MAX_SIZE][MAX_HEIGHT][MAX_SIZE];
         generateChunk();
     }
 
     public void generateChunk(){
-
         for(int y = 0; y < MAX_HEIGHT; y++){
             for(int x = 0; x < MAX_SIZE; x++){
                 for(int z = 0; z < MAX_SIZE; z++){
@@ -44,8 +43,7 @@ public class Chunk {
                 }
             }
         }
-
-        for(int y = 0; y < MAX_HEIGHT; y++){
+        /*for(int y = 0; y < MAX_HEIGHT; y++){
             for(int x = 0; x < MAX_SIZE; x++){
                 for(int z = 0; z < MAX_SIZE; z++){
                     if(this.blocks[x][y][z] != null){
@@ -53,7 +51,7 @@ public class Chunk {
                     }
                 }
             }
-        }
+        }*/
 
     }
 
