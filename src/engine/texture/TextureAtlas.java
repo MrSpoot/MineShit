@@ -2,16 +2,17 @@ package engine.texture;
 
 public enum TextureAtlas {
 
-    NONE(0,0),
+    GRASS_TOP(0,0),
     STONE(1,0),
     DIRT(2,0),
+    GRASS(3,0),
     LOG(4,1),
     LOG_TOP(5,1),
     BEDROCK(1,1);
 
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     TextureAtlas(int x, int y){
         this.x = x;

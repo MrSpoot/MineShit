@@ -7,7 +7,7 @@ public class Game {
     private World world;
 
     public Game() {
-        this.world = new World();
+        World.create();
     }
 
     public void update(){

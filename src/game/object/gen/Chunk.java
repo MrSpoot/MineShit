@@ -2,10 +2,8 @@ package game.object.gen;
 
 import engine.math.Vector3f;
 import game.object.Block;
-import game.object.block.Air;
-import game.object.block.Bedrock;
-import game.object.block.Dirt;
-import game.object.block.Stone;
+import game.object.gen.block.*;
+import game.object.utils.WorldUtils;
 
 public class Chunk {
 
@@ -35,6 +33,8 @@ public class Chunk {
                         this.blocks[x][y][z] = new Bedrock(new Vector3f(x + position.getX(), y + position.getY(), z + position.getZ()));
                     }else if (y > 59 && y < 65 ){
                         this.blocks[x][y][z] = new Dirt(new Vector3f(x + position.getX(), y + position.getY(), z + position.getZ()));
+                    }else if(y == 65){
+                        this.blocks[x][y][z] = new Grass(new Vector3f(x + position.getX(), y + position.getY(), z + position.getZ()));
                     }else if(y < 60){
                         this.blocks[x][y][z] = new Stone(new Vector3f(x + position.getX(), y + position.getY(), z + position.getZ()));
                     }else{
@@ -44,6 +44,17 @@ public class Chunk {
                 }
             }
         }
+
+        for(int y = 0; y < MAX_HEIGHT; y++){
+            for(int x = 0; x < MAX_SIZE; x++){
+                for(int z = 0; z < MAX_SIZE; z++){
+                    if(this.blocks[x][y][z] != null){
+                        this.blocks[x][y][z].setFaceToDisplay(WorldUtils.getFaceToDisplay(this.blocks[x][y][z].getPosition(),this));
+                    }
+                }
+            }
+        }
+
     }
 
     public Block[][][] getBlocks() {

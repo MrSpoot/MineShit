@@ -1,18 +1,15 @@
-package game.object.block;
+package game.object.gen.block;
 
 import engine.math.Vector3f;
-import engine.texture.TextureAtlas;
-import engine.texture.TextureAtlasManager;
 import game.object.Block;
+import game.object.utils.Face;
 
-import static org.lwjgl.opengl.GL11.glTexCoord2f;
-import static org.lwjgl.opengl.GL11.glVertex3f;
+import java.util.ArrayList;
 
 public class Air extends Block {
 
     private Vector3f position;
-
-    private final TextureAtlas texureName = TextureAtlas.NONE;
+    private boolean isOpaque = false;
 
     public Air(){this(new Vector3f(0,0,0));}
 
@@ -46,5 +43,15 @@ public class Air extends Block {
 
     public float getZ(){
         return this.position.getZ();
+    }
+
+    @Override
+    public void setFaceToDisplay(ArrayList<Face> faceToDisplay) {
+        //DO NOTHING
+    }
+
+    @Override
+    public boolean isOpaque() {
+        return false;
     }
 }

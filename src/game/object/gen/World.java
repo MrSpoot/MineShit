@@ -8,46 +8,59 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class World {
 
-    private int renderingList;
-    private final ArrayList<Chunk> world;
+    private static int renderingList;
+    private static ArrayList<Chunk> world;
 
-    public World() {
-        this.world = new ArrayList<>();
+    public static void create(){
+        world = new ArrayList<>();
 
-        this.world.add(new Chunk(new Vector3f(0,0,0)));
-        this.world.add(new Chunk(new Vector3f(1,0,1)));
-        this.world.add(new Chunk(new Vector3f(1,0,0)));
-        this.world.add(new Chunk(new Vector3f(0,0,1)));
 
+        int worldSize = 8;
+
+        for(int x = 0; x < worldSize; x++){
+            for(int z = 0; z < worldSize; z++){
+                world.add(new Chunk(new Vector3f(x,0,z)));
+            }
+        }
+
+        //world.add(new Chunk(new Vector3f(1,0,1)));
+       //world.add(new Chunk(new Vector3f(1,0,0)));
+       //world.add(new Chunk(new Vector3f(0,0,1)));
         compileRendering();
     }
 
-    private void compileRendering(){
+    private static void compileRendering(){
         renderingList = glGenLists(1);
         glNewList(renderingList,GL_COMPILE);
             glBegin(GL_QUADS);
-                for(Chunk c : this.world){
-
+                for(Chunk c : world){
                     for(int y = 0; y < c.getMAX_HEIGHT(); y++){
                         for(int x = 0; x < c.getMAX_SIZE(); x++){
                             for(int z = 0; z < c.getMAX_SIZE(); z++){
 
-                               c.getBlocks()[x][y][z].render();
+                                if(c.getBlocks()[x][y][z] != null){
+
+                                    c.getBlocks()[x][y][z].render();
+                                }
 
                             }
                         }
                     }
-
                 }
+
             glEnd();
         glEndList();
+    }
+
+    public static ArrayList<Chunk> getWorld() {
+        return world;
     }
 
     public void update(){
 
     }
 
-    public void render(){
+    public static void render(){
         glCallList(renderingList);
     }
 

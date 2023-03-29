@@ -1,8 +1,5 @@
-
 import engine.math.Vector3f;
 import engine.texture.Texture;
-import engine.texture.TextureAtlas;
-import engine.texture.TextureAtlasManager;
 import game.object.Game;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -22,7 +19,7 @@ public class Main {
     private Game game;
 
     public Main(){
-        DisplayManager.create(1600,900,"Oui Oui Baguette");
+        DisplayManager.create(1600,900,"Mineshit");
         camera = new Camera(new Vector3f(0,-66,0));
         camera.setPerspectiveProjection(90.0f,0.1f,1000.0f);
     }
@@ -77,7 +74,7 @@ public class Main {
 
             if(System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
-                //System.out.println(ticks + "ticks, "+ frames + " fps");
+                System.out.println(ticks + "ticks, "+ frames + " fps");
                 ticks = 0;
                 frames = 0;
             }
