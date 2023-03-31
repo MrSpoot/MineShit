@@ -8,7 +8,7 @@ import game.object.utils.WorldUtils;
 public class Chunk {
 
     private final Vector3f position;
-    private final int MAX_HEIGHT = 2;
+    private final int MAX_HEIGHT = 255;
     private final int MAX_SIZE = 16;
 
     private Block[][][] blocks;
@@ -18,7 +18,7 @@ public class Chunk {
     }
 
     public Chunk(Vector3f position) {
-        this.position = new Vector3f(position.getX()*MAX_SIZE,position.getY(),position.getZ()*MAX_SIZE);
+        this.position = new Vector3f(position.getX(),position.getY(),position.getZ());
         this.blocks = new Block[MAX_SIZE][MAX_HEIGHT][MAX_SIZE];
         generateChunk();
     }
@@ -29,15 +29,15 @@ public class Chunk {
                 for(int z = 0; z < MAX_SIZE; z++){
 
                     if(y == 0){
-                        this.blocks[x][y][z] = new Bedrock(new Vector3f(x + position.getX(), y + position.getY(), z + position.getZ()));
+                        this.blocks[x][y][z] = new Bedrock(new Vector3f(x + position.getX()*MAX_SIZE, y + position.getY(), z + position.getZ()*MAX_SIZE));
                     }else if (y > 59 && y < 65 ){
-                        this.blocks[x][y][z] = new Dirt(new Vector3f(x + position.getX(), y + position.getY(), z + position.getZ()));
+                        this.blocks[x][y][z] = new Dirt(new Vector3f(x + position.getX()*MAX_SIZE, y + position.getY(), z + position.getZ()*MAX_SIZE));
                     }else if(y == 65){
-                        this.blocks[x][y][z] = new Grass(new Vector3f(x + position.getX(), y + position.getY(), z + position.getZ()));
+                        this.blocks[x][y][z] = new Grass(new Vector3f(x + position.getX()*MAX_SIZE, y + position.getY(), z + position.getZ()*MAX_SIZE));
                     }else if(y < 60){
-                        this.blocks[x][y][z] = new Stone(new Vector3f(x + position.getX(), y + position.getY(), z + position.getZ()));
+                        this.blocks[x][y][z] = new Stone(new Vector3f(x + position.getX()*MAX_SIZE, y + position.getY(), z + position.getZ()*MAX_SIZE));
                     }else{
-                        this.blocks[x][y][z] = new Air(new Vector3f(x + position.getX(), y + position.getY(), z + position.getZ()));
+                        this.blocks[x][y][z] = new Air(new Vector3f(x + position.getX()*MAX_SIZE, y + position.getY(), z + position.getZ()*MAX_SIZE));
                     }
 
                 }

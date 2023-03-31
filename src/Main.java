@@ -6,7 +6,6 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import engine.render.Camera;
 import engine.render.DisplayManager;
-import org.newdawn.slick.TrueTypeFont;
 
 import java.awt.*;
 
@@ -23,7 +22,7 @@ public class Main {
 
     public Main(){
         DisplayManager.create(1600,900,"Mineshit");
-        camera = new Camera(new Vector3f(0,-0,0));
+        camera = new Camera(new Vector3f(0,-67,0));
         camera.setPerspectiveProjection(90.0f,0.1f,1000.0f);
 
     }
@@ -78,7 +77,7 @@ public class Main {
 
             if(System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
-                //System.out.println(ticks + "ticks, "+ frames + " fps");
+                System.out.println(ticks + "ticks, "+ frames + " fps");
                 ticks = 0;
                 frames = 0;
             }

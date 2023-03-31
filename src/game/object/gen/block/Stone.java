@@ -45,7 +45,6 @@ public class Stone extends Block {
 
         float[] textureCord = TextureAtlasManager.getTextureCoordinate(textureName);
 
-        glColor3f(1f,0,0);
         if(faceToDisplay.contains(Face.SOUTH)){
             //SOUTH
             glTexCoord2f(textureCord[0],textureCord[1]); glVertex3f(0+this.getX(), 0+this.getY(), 0+this.getZ());
@@ -53,7 +52,6 @@ public class Stone extends Block {
             glTexCoord2f(textureCord[4],textureCord[5]); glVertex3f(1+this.getX(), 1+this.getY(), 0+this.getZ());
             glTexCoord2f(textureCord[6],textureCord[7]); glVertex3f(0+this.getX(), 1+this.getY(), 0+this.getZ());
         }
-        glColor3f(1f,0,1);
         if(faceToDisplay.contains(Face.NORTH)){
             //NORTH
             glTexCoord2f(textureCord[0],textureCord[1]); glVertex3f(1+this.getX(), 0+this.getY(), -1+this.getZ());
@@ -61,7 +59,6 @@ public class Stone extends Block {
             glTexCoord2f(textureCord[4],textureCord[5]); glVertex3f(0+this.getX(), 1+this.getY(), -1+this.getZ());
             glTexCoord2f(textureCord[6],textureCord[7]); glVertex3f(1+this.getX(), 1+this.getY(), -1+this.getZ());
         }
-        glColor3f(1,1,1);
         if(faceToDisplay.contains(Face.TOP)){
             //TOP
             glTexCoord2f(textureCord[0],textureCord[1]); glVertex3f(0+this.getX(), 1+this.getY(), 0+this.getZ());
@@ -76,7 +73,6 @@ public class Stone extends Block {
             glTexCoord2f(textureCord[4],textureCord[5]); glVertex3f(1+this.getX(), 0+this.getY(), 0+this.getZ());
             glTexCoord2f(textureCord[6],textureCord[7]); glVertex3f(0+this.getX(), 0+this.getY(), 0+this.getZ());
         }
-        glColor3f(0,1f,0);
         if(faceToDisplay.contains(Face.EAST)){
             //EAST
             glTexCoord2f(textureCord[0],textureCord[1]); glVertex3f(1+this.getX(), 0+this.getY(), 0+this.getZ());
@@ -91,8 +87,6 @@ public class Stone extends Block {
             glTexCoord2f(textureCord[4],textureCord[5]); glVertex3f(0+this.getX(), 1+this.getY(), 0+this.getZ());
             glTexCoord2f(textureCord[6],textureCord[7]); glVertex3f(0+this.getX(), 1+this.getY(), -1+this.getZ());
         }
-        glColor3f(1,1,1);
-
     }
 
     @Override

@@ -1,6 +1,9 @@
 package game.object.gen;
 
 import engine.math.Vector3f;
+import game.object.gen.block.Dirt;
+import game.object.gen.block.Grass;
+import game.object.gen.block.Stone;
 import game.object.utils.WorldUtils;
 
 import java.util.ArrayList;
@@ -16,16 +19,16 @@ public class World {
         world = new ArrayList<>();
 
 
-        /*int worldSize = 2;
+        int worldSize = 16;
 
         for(int x = 0; x < worldSize; x++){
             for(int z = 0; z < worldSize; z++){
                 world.add(new Chunk(new Vector3f(x,0,z)));
             }
-        }*/
+        }
 
-       world.add(new Chunk(new Vector3f(0,0,0)));
-       world.add(new Chunk(new Vector3f(0,0,1)));
+       //world.add(new Chunk(new Vector3f(2,0,1)));
+       //world.add(new Chunk(new Vector3f(1,0,1)));
         for(Chunk c : world) {
             for (int y = 0; y < c.getMAX_HEIGHT(); y++) {
                 for (int x = 0; x < c.getMAX_SIZE(); x++) {
@@ -59,7 +62,6 @@ public class World {
                         }
                     }
                 }
-
             glEnd();
         glEndList();
     }
