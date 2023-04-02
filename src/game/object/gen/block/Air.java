@@ -49,7 +49,10 @@ public class Air extends Block {
     public void setFaceToDisplay(ArrayList<Face> faceToDisplay) {
         //DO NOTHING
     }
-
+    @Override
+    public ArrayList<Face> getFaceToDisplay() {
+        return new ArrayList<>();
+    }
     @Override
     public boolean isOpaque() {
         return false;

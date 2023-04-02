@@ -20,6 +20,8 @@ public abstract class Block {
 
     public abstract void setFaceToDisplay(ArrayList<Face> faceToDisplay);
 
+    public abstract ArrayList<Face> getFaceToDisplay();
+
     public abstract boolean isOpaque();
 
 }

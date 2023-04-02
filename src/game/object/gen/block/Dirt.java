@@ -103,7 +103,10 @@ public class Dirt extends Block {
         this.faceToDisplay.clear();
         this.faceToDisplay.addAll(faceToDisplay);
     }
-
+    @Override
+    public ArrayList<Face> getFaceToDisplay() {
+        return this.faceToDisplay;
+    }
     @Override
     public boolean isOpaque() {
         return true;
