@@ -1,13 +1,7 @@
-import engine.math.Vector3f;
 import engine.texture.Texture;
 import game.object.Game;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
-import engine.render.Camera;
 import engine.render.DisplayManager;
-
-import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -16,23 +10,16 @@ public class Main {
     private static final float MAX_FRAME_RATE = 500;
     private static final float MAX_TICKS_RATE = 60;
     private boolean running = false;
-    private Camera camera;
-
-    private Game game;
 
     public Main(){
         DisplayManager.create(1600,900,"Mineshit");
-        camera = new Camera(new Vector3f(0,-67,0));
-        camera.setPerspectiveProjection(90.0f,0.1f,1000.0f);
-
     }
 
     public void start(){
         System.out.println("GAME STARTED");
         this.running = true;
         loadAsset();
-        this.game = new Game();
-
+        Game.create();
         loop();
     }
 
@@ -86,10 +73,7 @@ public class Main {
     }
 
     public void update(){
-        if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) Mouse.setGrabbed(false);
-        if(Mouse.isButtonDown(0)) Mouse.setGrabbed(true);
-        if(!Mouse.isGrabbed()) return;
-        this.camera.input();
+        Game.update();
     }
 
     public void render(){
@@ -97,10 +81,7 @@ public class Main {
             glViewport(0,0,Display.getWidth(),Display.getHeight());
         }
         DisplayManager.clearBuffers();
-        this.camera.getPerspectiveProjection();
-        this.camera.update();
-
-        this.game.render();
+        Game.render();
     }
 
     public void exit(){
@@ -109,7 +90,6 @@ public class Main {
     }
 
     public void loadAsset(){
-
         Texture.create("/texture/texture_sheet.png",GL_NEAREST);
     }
 

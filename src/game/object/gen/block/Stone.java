@@ -94,7 +94,10 @@ public class Stone extends Block {
         this.faceToDisplay.clear();
         this.faceToDisplay.addAll(faceToDisplay);
     }
-
+    @Override
+    public ArrayList<Face> getFaceToDisplay() {
+        return this.faceToDisplay;
+    }
     public Vector3f getPosition() {
         return position;
     }

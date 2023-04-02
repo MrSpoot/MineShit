@@ -105,6 +105,11 @@ public class Bedrock extends Block {
     }
 
     @Override
+    public ArrayList<Face> getFaceToDisplay() {
+        return this.faceToDisplay;
+    }
+
+    @Override
     public boolean isOpaque() {
         return true;
     }
