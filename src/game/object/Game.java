@@ -12,7 +12,7 @@ public class Game {
     private static Camera camera;
 
     public static void create(){
-        camera = new Camera(new Vector3f(7.5f,-68,7.5f));
+        camera = new Camera(new Vector3f(0,-280,0));
         camera.setPerspectiveProjection(90.0f,0.1f,1000.0f);
         GenerationEngine.create();
         generationThread = new Thread() {

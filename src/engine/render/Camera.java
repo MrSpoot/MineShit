@@ -76,7 +76,7 @@ public class Camera {
         glPopMatrix();
     }
 
-    float speed = 0.1f;
+    float speed = 1f;
 
     public void input(){
 

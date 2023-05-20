@@ -1,15 +1,6 @@
 package game.object.gen;
 
 import engine.math.Vector2f;
-import engine.math.Vector3f;
-import game.object.GenerationEngine;
-import game.object.gen.block.Dirt;
-import game.object.gen.block.Grass;
-import game.object.gen.block.Stone;
-import game.object.utils.WorldUtils;
-
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,16 +21,12 @@ public class World {
         renderingList = glGenLists(1);
         glNewList(renderingList,GL_COMPILE);
             glBegin(GL_QUADS);
-                for (var entry : activeChunks.entrySet()) {
+                for (Map.Entry<Vector2f,Chunk> entry : activeChunks.entrySet()) {
                     Chunk c = entry.getValue();
                     c.render();
                 }
             glEnd();
         glEndList();
-    }
-
-    public static HashMap<Vector2f, Chunk> getWorld() {
-        return world;
     }
 
     public static void addWorldChunk(Vector2f position){

@@ -3,10 +3,12 @@ package game.object;
 import engine.math.Vector2f;
 import engine.render.Camera;
 import game.object.gen.Chunk;
+import game.object.gen.PerlinNoise;
 import game.object.gen.World;
 import game.object.utils.WorldUtils;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class GenerationEngine {
 
@@ -14,7 +16,7 @@ public class GenerationEngine {
 
     private static Integer actualChunkX = null;
     private static Integer actualChunkZ = null;
-    private static final int RENDERING_DISTANCE = 4;
+    private static final int RENDERING_DISTANCE = 8;
     private static HashMap<Vector2f,Chunk> cordsToRemove;
     private static boolean canBeCompile = false;
     private static boolean canBeGenerate = false;
@@ -27,10 +29,9 @@ public class GenerationEngine {
     public static void update(){
         if(canBeGenerate){
             Camera camera = Game.getCamera();
-            Chunk c = new Chunk();
 
-            int chunkX = (int) -camera.getPosition().getX()/c.getMAX_SIZE();
-            int chunkZ = (int) -camera.getPosition().getZ()/c.getMAX_SIZE();
+            int chunkX = (int) -camera.getPosition().getX()/Chunk.MAX_SIZE;
+            int chunkZ = (int) -camera.getPosition().getZ()/Chunk.MAX_SIZE;
 
             if(actualChunkX == null || actualChunkX != chunkX || actualChunkZ == null || actualChunkZ != chunkZ ){
                 cordsToRemove = (HashMap<Vector2f, Chunk>) World.getActiveChunks().clone();
@@ -51,7 +52,7 @@ public class GenerationEngine {
                 }
 
                 if(actualChunkX == null || actualChunkZ == null){
-                    for (var entry : World.getActiveChunks().entrySet()) {
+                    for (Map.Entry<Vector2f,Chunk> entry : World.getActiveChunks().entrySet()) {
                         Chunk chunk = entry.getValue();
                         for (int y = 0; y < chunk.getMAX_HEIGHT(); y++) {
                             for (int x = 0; x < chunk.getMAX_SIZE(); x++) {
